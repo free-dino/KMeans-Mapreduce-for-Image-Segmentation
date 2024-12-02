@@ -18,6 +18,13 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+or just use conda environment:
+
+```bash
+conda activate
+pip install -r requirements.txt
+```
+
 ## Program parameters for `data_prep.py` 
 
 - `src_img` - Path to the source image.
