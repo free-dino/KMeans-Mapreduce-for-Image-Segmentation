@@ -4,20 +4,7 @@ from os.path import join, isdir, isfile
 
 import cv2
 import numpy as np
-from sklearn.cluster import KMeans
-import matplotlib.pyplot as plt
-import pandas as pd
-import seaborn as sns
-from tqdm import tqdm
-import os
-from sklearn.utils import shuffle
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report,confusion_matrix
-import ipywidgets as widgets
-import io
 from PIL import Image
-from IPython.display import display,clear_output
-from warnings import filterwarnings
 
 parser = argparse.ArgumentParser(description='This script visualizes estimated clusters.')
 
