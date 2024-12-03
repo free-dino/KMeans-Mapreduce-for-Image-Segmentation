@@ -12,38 +12,39 @@ parser = argparse.ArgumentParser(
 parser.add_argument('--src_img', type=str, help='Path to the source image.')
 parser.add_argument('--dst_folder', type=str,
                     help='Directory in which points.txt and clusters.txt will be saved.')
-parser.add_argument('--k_init_centroids', type=int, help='Number of initial centroids to seed using KMeans++.', default=5)
+parser.add_argument('--k_init_centroids', type=int,
+                    help='Number of initial centroids to seed using KMeans++.', default=5)
 
 args = parser.parse_args()
 
 
 def nparray_to_str(X):
-    to_save = '\n'.join([' '.join(str(X[i])[1:-1].split()) for i in range(len(X))])
+    to_save = '\n'.join([' '.join(str(X[i])[1:-1].split())
+                        for i in range(len(X))])
     return to_save
 
 
 def kmeans_plus_plus(data, k):
-    """
-    Implements KMeans++ initialization to seed k centroids.
-    """
-    n, m = data.shape
-    centroids = []
-
-    # Randomly select the first centroid
-    first_idx = np.random.randint(0, n)
-    centroids.append(data[first_idx])
+    # Randomly choose the first centroid
+    centroids = [data[np.random.choice(range(len(data)))]]
 
     for _ in range(1, k):
-        D2 = np.array([min(distance.euclidean(p, c) ** 2 for c in centroids) for p in data])
-        probabilities = D2 / D2.sum()
-        cumulative_probs = np.cumsum(probabilities)
-        r = np.random.rand()
+        # Calculate squared distances from the closest centroid
+        D2 = np.array(
+            [min(np.linalg.norm(x - c) ** 2 for c in centroids) for x in data])
 
-        # Find next centroid index
-        for idx, prob in enumerate(cumulative_probs):
-            if r <= prob:
-                centroids.append(data[idx])
-                break
+        D2_sum = D2.sum()
+        if D2_sum > 0:
+            probabilities = D2 / D2_sum
+        else:
+            # Default to uniform distribution if sum is zero
+            probabilities = np.ones_like(D2) / len(D2)
+
+        # Choose the next centroid based on the probabilities
+        cumulative_probs = probabilities.cumsum()
+        r = np.random.rand()
+        next_centroid = data[np.searchsorted(cumulative_probs, r)]
+        centroids.append(next_centroid)
 
     return np.array(centroids)
 
@@ -55,21 +56,33 @@ def kmeans(data, initial_centroids, max_iter=10):
     k = len(initial_centroids)
     n = data.shape[0]
     centers = initial_centroids.copy()
-    labels = np.zeros(n)
+    labels = np.zeros(n, dtype=np.int32)
 
-    for _ in range(max_iter):
+    for iteration in range(max_iter):
         # Assign each point to the nearest center
         for i in range(n):
-            distances = [np.linalg.norm(data[i] - c) for c in centers]
+            distances = np.linalg.norm(data[i] - centers, axis=1)
             labels[i] = np.argmin(distances)
 
         # Update centers
+        new_centers = np.zeros_like(centers)
         for j in range(k):
             points = data[labels == j]
             if len(points) > 0:
-                centers[j] = np.mean(points, axis=0)
+                new_centers[j] = np.mean(points, axis=0)
+            else:
+                # Handle empty clusters (optional: reinitialize to random point)
+                new_centers[j] = data[np.random.choice(len(data))]
+
+        # Check for convergence
+        if np.allclose(new_centers, centers):
+            print(f"Converged at iteration {iteration}")
+            break
+
+        centers = new_centers
 
     return labels, centers
+
 
 
 def main(src_img, dst_folder, k):
@@ -83,7 +96,8 @@ def main(src_img, dst_folder, k):
     # load and prepare data
     img = cv2.imread(src_img)
     br, kl, _ = img.shape
-    data = img.reshape((-1, 3)).astype(np.float32) / 255.0  # Normalize to [0, 1]
+    data = img.reshape((-1, 3)).astype(np.float32) / \
+        255.0  # Normalize to [0, 1]
 
     # Write points
     with open(points_path, 'w') as f:

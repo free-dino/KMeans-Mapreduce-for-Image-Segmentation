@@ -1,25 +1,55 @@
 #!/usr/bin/env python3
 import sys
 import numpy as np
-from data_prep import kmeans_plus_plus, kmeans  # Import your existing functions
+from data_prep import kmeans_plus_plus, kmeans
 
-def process_image(points_file):
-    # Load points from file
-    data = np.loadtxt(points_file)
+def process_image(image_name, points):
+    """
+    Performs KMeans clustering on points.
+    Outputs: <image_name>\t<centroid_values>.
+    """
+    k = 3  # Number of clusters
+    points_array = np.array(points)
 
-    # Perform K-Means++ initialization and clustering
-    k = 5  # Number of clusters; can be adjusted
-    initial_centroids = kmeans_plus_plus(data, k)
-    labels, centers = kmeans(data, initial_centroids)
+    # Run KMeans++
+    initial_centroids = kmeans_plus_plus(points_array, k)
+    _, centroids = kmeans(points_array, initial_centroids)
 
-    # Save clusters to a new file
-    output_file = points_file.replace('.txt', '_clusters.txt')
-    with open(output_file, 'w') as f:
-        for point, label in zip(data, labels):
-            f.write(f"{point[0]} {point[1]} {point[2]} {int(label)}\n")
-
-    print(f"{output_file} created.")
+    # Output centroids in the desired format
+    for centroid in centroids:
+        centroid_values = ' '.join(map(str, centroid))
+        print(f"{image_name}\t{centroid_values}")
 
 if __name__ == '__main__':
-    for line in sys.stdin:  # Read .txt paths from stdin
-        process_image(line.strip())
+    current_image = None
+    points = []
+
+    # Read input from stdin
+    for line in sys.stdin:
+        line = line.strip()
+        if not line:
+            continue
+
+        try:
+            # Parse mapper output into image_name and points
+            image_name, point_str = line.split('\t')
+            point = list(map(float, point_str.split()))
+
+            # If the image_name changes, process the previous one
+            if current_image and image_name != current_image:
+                print(f"Processing image: {current_image}")  # Debugging line
+                process_image(current_image, points)
+                points = []  # Reset points for the new image
+
+            current_image = image_name
+            points.append(point)
+        except ValueError:
+            # Handle cases where the line does not have the expected format
+            print(f"Skipping invalid line: {line}")  # Debugging line
+            continue
+
+    # Process the last image
+    if current_image:
+        print(f"Processing final image: {current_image}")  # Debugging line
+        process_image(current_image, points)
+
