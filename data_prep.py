@@ -49,7 +49,7 @@ def kmeans_plus_plus(data, k):
     return np.array(centroids)
 
 
-def kmeans(data, initial_centroids, max_iter=10):
+def kmeans(data, initial_centroids, max_iter=30):
     """
     KMeans clustering algorithm.
     """
