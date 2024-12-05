@@ -1,57 +1,60 @@
-# Scripts to prepare input data and visualize results for image examples
+# K-means MapReduce implementation
+In this work k-means clustering algorithm is implemented using MapReduce (Hadoop version 2.8) framework.
 
-`data_prep.py` script creates points.txt and clusters.txt files for a given input image.
+To run the program, shell script ```run.sh``` should be executed. It requires path to jar file and its input parameters which are:
 
-`visualize_results.py` script writes an image for estimated centroids.
+* ```input``` - path to data file
+* ```state``` - path to file that contains clusters 
+* ```number``` - number of reducers 
+* ```output``` - output directory 
+* ```delta``` - threshold convergence (acceptable difference between 2 subsequent centroids)
+* ```max``` - maximum number of iterations 
+* ```distance``` - similairty measure (currently only Euclidean distance is supported)
 
-### Requirements
-- Python 3 (tested on version 3.8.2)
-- numpy (tested on version 1.19.2)
-- opencv (tested on version 4.4.0.42)
+## Workflow
+The figure below denotes one iteration of MapReduce program.
 
-### Installation
+![alt text][flow]
 
-#### Setup virtualenv
-```bash
-virtualenv venv -p python3
-source venv/bin/activate
-pip install -r requirements.txt
-```
+First, Centroids and Context (Configuration) are loaded into the Distributed Cache. This is done by overriding setup function in the Mapper and Reducer class. Afterwards, the input data file is split and each data point is processed by one of the map functions (in Map process). The function writes key-value pairs <Centroid, Point>, where the Centroid is the closest one to the Point. Next, Combiner is used in order to decrease the number of local writings. In this phase data points that are on the same machine are summed up and the number of those data points is recorded, Point.number variable. Now, for the optimization reasons output values are automatically shuffled and sorted by Centroids. The Reducer performs the same procedure as the Combiner, but it also checks whether centroids converged; comparing the difference between old and new centroids with delta input parameter. If a centroid converge, then the global Counter remains unchanged, otherwise, it is incremented. 
 
-or just use conda environment:
+After the one iteration is done, new centroids are saved and the program checks two conditions, if the program reached the maximum number of iterations or if the Counter value is unchanged. If one of these two conditions is satisfied, then the program is finished, otherwise, the whole MapReduce process is run again with the updated centroids.
 
-```bash
-conda activate
-pip install -r requirements.txt
-```
+## Examples
+One of the use-cases of k-means algorithm is the color quantization process, reducing the number of distinct colors of an image. (Far better algorithms for this purpose are available)
 
-## Program parameters for `data_prep.py` 
-
-- `src_img` - Path to the source image.
-- `dst_folder` - Directory in which points.txt and clusters.txt will be saved.
-- `k_init_centroids` - How many initial uniformly sampled centroids to generate.
-
-## Program parameters for `visualize_results.py`
-
-- `clusters_path` - File or directory path to generated clusters.
-- `src_img` - Path to the source image.
-- `dst_img` - Path to the image to be written.
-
-## Sample usage:
-
-The example below creates `points.txt` file for a given image (`src_img`) and generates uniformly sampled initial centroids. 
-
-```bash
-source venv/bin/activate
-
-python data_prep.py --src_img ./sample_images/image2.jpg --dst_folder ./input_data --k_init_centroids 10
-```
-
-The example below visualizes estimated clusters. `points.txt` file for a given image (`src_img`) and generates uniformly sampled initial centroids.
+Numerical (RGB) values of images (Fig. 1) are saved as input data (Fig. 2), and clusters are randomly initialized. 
 
 
-```bash
-source venv/bin/activate
+### Original Images
 
-python visualize_results.py --clusters_path ./input_data/clusters.txt --src_img ./sample_images/image2.jpg --dst_img ./tmp.jpg
-```
+![alt text][fig1]
+
+
+### RGB values of original and modified images  
+
+![alt text][fig2]
+
+#### After 10 iterations with 10 clusters, RBG values are represented in Fig. 3. It can be noted that a couple of centroids have vanished. 
+
+![alt text][fig3]
+
+### Modified images for a different number of centroids 
+
+![alt text][fig4]
+
+### Modified images for a different number of iterations and 10 centroids 
+
+![alt text][fig5]
+
+![alt text][fig6]
+
+
+[flow]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/alg.png "One MapReduce iteration"
+
+[fig1]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/fig1.PNG "Original images"
+[fig2]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/fig2.PNG "RGB model"
+[fig3]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/fig3.PNG "10th iteration, 10 clusters"
+[fig4]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/fig4.PNG "Different number of clusters, 10th iteration"
+[fig5]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/fig5.PNG "Different number of iterations, 10 clusters"
+[fig6]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/fig6.PNG "Different number of iterations, 10 clusters"
