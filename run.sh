@@ -8,7 +8,7 @@ rm -r -f ./output/*
 # create some temp file
 mkdir ./tmp
 
-python3 data_prep.py --src_img ./input/image.jpg --dst_folder ./tmp
+python3 data_prep.py --src_img ./input/* --dst_folder ./tmp
 
 # remove old file from hdfs if any
 hdfs dfs -rm -r -f /KMeans/Input
@@ -50,6 +50,7 @@ LAST_DIR="$(hdfs dfs -ls -t -C /KMeans/Output | head -1)"
 hdfs dfs -get "$LAST_DIR/part-r-00000" ./tmp
 mv ./tmp/part-r-00000 ./tmp/kmeans-output.txt
 
-python3 visualize_results.py --clusters_path ./tmp/kmeans-output.txt --src_img ./tmp/segmented_image.png --dst_img ./output/opening_image.jpg
+python3 visualize_results.py --clusters_path ./tmp/kmeans-output.txt --src_img ./tmp/segmented_image.jpg --dst_img ./output/output_image.jpg
 
+rm -r -f part-r-00000
 rm -r -f ./tmp
