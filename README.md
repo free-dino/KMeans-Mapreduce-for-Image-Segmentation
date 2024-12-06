@@ -1,46 +1,7 @@
-# K-means MapReduce for Image Segmentation implementation
-In this work k-means clustering algorithm is implemented using MapReduce (Hadoop version 2.8 or higher) framework.
+# K-means MapReduce implementation
+In this work k-means clustering algorithm is implemented using MapReduce (Hadoop version 2.8) framework.
 
-#### Start hadoop
-
-Format namenode
-```bash
-hdfs namenode -format
-```
-Start dfs and yarn, you can either go with:
-
-```bash
-start-dfs.sh
-start-yarn.sh
-```
-or 
-```bash
-start-all.sh
-```
-
-
-You should use a virtual environment to run this project.
-
-#### Setup virtualenv
-```bash
-virtualenv venv -p python3
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-or just use conda environment:
-
-```bash
-conda activate
-pip install -r requirements.txt
-```
-
-To run the program, shell script ```run.sh``` should be executed. 
-```bash
-sh run.sh
-```
-
-It requires path to jar file and its input parameters which are:
+To run the program, shell script ```run.sh``` should be executed. It requires path to jar file and its input parameters which are:
 
 * ```input``` - path to data file
 * ```state``` - path to file that contains clusters 
@@ -59,7 +20,33 @@ First, Centroids and Context (Configuration) are loaded into the Distributed Cac
 
 After the one iteration is done, new centroids are saved and the program checks two conditions, if the program reached the maximum number of iterations or if the Counter value is unchanged. If one of these two conditions is satisfied, then the program is finished, otherwise, the whole MapReduce process is run again with the updated centroids.
 
-## KMeans use-cases in this project
-One of the use-cases of k-means algorithm is the segmentation on MRI images, reducing the number of distinct colors of an image in order to make it easier to processing. (Far better algorithms for this purpose are available)
+## Examples
+One of the use-cases of k-means algorithm is the color quantization process, reducing the number of distinct colors of an image. (Far better algorithms for this purpose are available)
 
-Numerical (RGB) values of images are saved as input data, and clusters are initialized by using the KMeans++ algorithm to ensure the output stable everytime the code is run. 
+Numerical (RGB) values of images (Fig. 1) are saved as input data (Fig. 2), and clusters are randomly initialized. 
+
+
+### Original Images
+
+![alt text][fig1]
+
+
+### RGB values of original and modified images  
+
+![alt text][fig2]
+
+#### After 10 iterations with 10 clusters, RBG values are represented in Fig. 3. It can be noted that a couple of centroids have vanished. 
+
+![alt text][fig3]
+
+### Modified images for a different number of centroids 
+
+![alt text][fig4]
+
+### Modified images for a different number of iterations and 10 centroids 
+
+![alt text][fig5]
+
+![alt text][fig6]
+
+
