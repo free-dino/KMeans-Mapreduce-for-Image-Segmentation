@@ -1,7 +1,46 @@
 # K-means MapReduce implementation
-In this work k-means clustering algorithm is implemented using MapReduce (Hadoop version 2.8+) framework.
+In this work k-means clustering algorithm is implemented using MapReduce (Hadoop version 3.4.0) framework.
+### Start hadoop
+Format namenode:
+```bash
+hdfs namenode -format
+```
 
-To run the program, shell script ```run.sh``` should be executed. It requires path to jar file and its input parameters which are:
+Start dfs and yarn
+```bash
+start-dfs.sh
+start-yarn.sh
+```
+or 
+```bash
+start-all.sh
+```
+
+You should use a virtual environment to run this program.
+
+You can use either ```virtualenv``` or ```conda```.
+
+#### virtualenv
+```bash
+virtualenv venv -p python3
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+#### conda
+```bash
+conda activate
+pip install -r requirements.txt
+```
+
+
+Shell script ```run.sh``` should be executed now. 
+
+```
+sh run.sh
+```
+
+It requires path to jar file and its input parameters which are:
 
 * ```input``` - path to data file
 * ```state``` - path to file that contains clusters 
