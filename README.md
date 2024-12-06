@@ -1,5 +1,5 @@
 # K-means MapReduce implementation
-In this work k-means clustering algorithm is implemented using MapReduce (Hadoop version 2.8) framework.
+In this work k-means clustering algorithm is implemented using MapReduce (Hadoop version 2.8+) framework.
 
 To run the program, shell script ```run.sh``` should be executed. It requires path to jar file and its input parameters which are:
 
@@ -26,27 +26,5 @@ One of the use-cases of k-means algorithm is the color quantization process, red
 Numerical (RGB) values of images (Fig. 1) are saved as input data (Fig. 2), and clusters are randomly initialized. 
 
 
-### Original Images
 
-![alt text][fig1]
-
-
-### RGB values of original and modified images  
-
-![alt text][fig2]
-
-#### After 10 iterations with 10 clusters, RBG values are represented in Fig. 3. It can be noted that a couple of centroids have vanished. 
-
-![alt text][fig3]
-
-### Modified images for a different number of centroids 
-
-![alt text][fig4]
-
-### Modified images for a different number of iterations and 10 centroids 
-
-![alt text][fig5]
-
-![alt text][fig6]
-
-
+[flow]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/alg.png "One MapReduce iteration"
