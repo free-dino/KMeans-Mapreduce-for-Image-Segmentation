@@ -1,7 +1,46 @@
 # K-means MapReduce implementation
-In this work k-means clustering algorithm is implemented using MapReduce (Hadoop version 2.8) framework.
+In this work k-means clustering algorithm is implemented using MapReduce (Hadoop version 3.4.0) framework.
+### Start hadoop
+Format namenode:
+```bash
+hdfs namenode -format
+```
 
-To run the program, shell script ```run.sh``` should be executed. It requires path to jar file and its input parameters which are:
+Start dfs and yarn
+```bash
+start-dfs.sh
+start-yarn.sh
+```
+or 
+```bash
+start-all.sh
+```
+
+You should use a virtual environment to run this program.
+
+You can use either ```virtualenv``` or ```conda```.
+
+#### virtualenv
+```bash
+virtualenv venv -p python3
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+#### conda
+```bash
+conda activate
+pip install -r requirements.txt
+```
+
+
+Shell script ```run.sh``` should be executed now. 
+
+```
+sh run.sh
+```
+
+It requires path to jar file and its input parameters which are:
 
 * ```input``` - path to data file
 * ```state``` - path to file that contains clusters 
@@ -26,35 +65,5 @@ One of the use-cases of k-means algorithm is the color quantization process, red
 Numerical (RGB) values of images (Fig. 1) are saved as input data (Fig. 2), and clusters are randomly initialized. 
 
 
-### Original Images
-
-![alt text][fig1]
-
-
-### RGB values of original and modified images  
-
-![alt text][fig2]
-
-#### After 10 iterations with 10 clusters, RBG values are represented in Fig. 3. It can be noted that a couple of centroids have vanished. 
-
-![alt text][fig3]
-
-### Modified images for a different number of centroids 
-
-![alt text][fig4]
-
-### Modified images for a different number of iterations and 10 centroids 
-
-![alt text][fig5]
-
-![alt text][fig6]
-
 
 [flow]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/alg.png "One MapReduce iteration"
-
-[fig1]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/fig1.PNG "Original images"
-[fig2]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/fig2.PNG "RGB model"
-[fig3]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/fig3.PNG "10th iteration, 10 clusters"
-[fig4]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/fig4.PNG "Different number of clusters, 10th iteration"
-[fig5]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/fig5.PNG "Different number of iterations, 10 clusters"
-[fig6]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/fig6.PNG "Different number of iterations, 10 clusters"
