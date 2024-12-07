@@ -1,1 +1,55 @@
-Cặp Ảnh	Giống Nhau (%)	MSE	SSIM
+KET QUA SO SANH:
+
+Tr-me_0010_r.jpg và Tr-me_0010_m.jpg giống nhau: 38.24%
+Tr-me_0011_r.jpg và Tr-me_0011_m.jpg giống nhau: 41.86%
+Tr-me_0012_r.jpg và Tr-me_0012_m.jpg giống nhau: 32.81%
+Tr-me_0013_r.jpg và Tr-me_0013_m.jpg giống nhau: 32.07%
+Tr-me_0014_r.jpg và Tr-me_0014_m.jpg giống nhau: 48.78%
+Tr-me_0015_r.jpg và Tr-me_0015_m.jpg giống nhau: 36.66%
+Tr-me_0016_r.jpg và Tr-me_0016_m.jpg giống nhau: 43.18%
+Tr-me_0017_r.jpg và Tr-me_0017_m.jpg giống nhau: 32.45%
+Tr-me_0018_r.jpg và Tr-me_0018_m.jpg giống nhau: 49.54%
+Tr-me_0019_r.jpg và Tr-me_0019_m.jpg giống nhau: 56.95%
+Tr-me_0020_r.jpg và Tr-me_0020_m.jpg giống nhau: 42.67%
+Tr-me_0021_r.jpg và Tr-me_0021_m.jpg giống nhau: 47.64%
+Tr-me_0022_r.jpg và Tr-me_0022_m.jpg giống nhau: 40.32%
+Tr-me_0023_r.jpg và Tr-me_0023_m.jpg giống nhau: 52.60%
+Tr-me_0024_r.jpg và Tr-me_0024_m.jpg giống nhau: 29.87%
+Tr-me_0025_r.jpg và Tr-me_0025_m.jpg giống nhau: 33.90%
+Tr-me_0026_r.jpg và Tr-me_0026_m.jpg giống nhau: 40.67%
+Tr-me_0027_r.jpg và Tr-me_0027_m.jpg giống nhau: 29.84%
+Tr-me_0028_r.jpg và Tr-me_0028_m.jpg giống nhau: 30.32%
+Tr-me_0030_r.jpg và Tr-me_0030_m.jpg giống nhau: 45.24%
+Tr-me_0031_r.jpg và Tr-me_0031_m.jpg giống nhau: 61.65%
+Tr-me_0032_r.jpg và Tr-me_0032_m.jpg giống nhau: 50.50%
+Tr-me_0033_r.jpg và Tr-me_0033_m.jpg giống nhau: 30.60%
+Tr-me_0034_r.jpg và Tr-me_0034_m.jpg giống nhau: 40.55%
+Tr-me_0035_r.jpg và Tr-me_0035_m.jpg giống nhau: 31.02%
+Tr-me_0036_r.jpg và Tr-me_0036_m.jpg giống nhau: 34.76%
+Tr-me_0037_r.jpg và Tr-me_0037_m.jpg giống nhau: 40.48%
+Tr-me_0038_r.jpg và Tr-me_0038_m.jpg giống nhau: 37.47%
+Tr-me_0039_r.jpg và Tr-me_0039_m.jpg giống nhau: 34.79%
+Tr-me_0040_r.jpg và Tr-me_0040_m.jpg giống nhau: 31.65%
+Tr-me_0041_r.jpg và Tr-me_0041_m.jpg giống nhau: 30.61%
+Tr-me_0042_r.jpg và Tr-me_0042_m.jpg giống nhau: 30.24%
+Tr-me_0043_r.jpg và Tr-me_0043_m.jpg giống nhau: 40.17%
+Tr-me_0044_r.jpg và Tr-me_0044_m.jpg giống nhau: 30.44%
+Tr-me_0045_r.jpg và Tr-me_0045_m.jpg giống nhau: 30.42%
+Tr-me_0046_r.jpg và Tr-me_0046_m.jpg giống nhau: 31.19%
+Tr-me_0047_r.jpg và Tr-me_0047_m.jpg giống nhau: 44.86%
+Tr-me_0048_r.jpg và Tr-me_0048_m.jpg giống nhau: 46.50%
+Tr-me_0049_r.jpg và Tr-me_0049_m.jpg giống nhau: 30.28%
+Tr-me_0050_r.jpg và Tr-me_0050_m.jpg giống nhau: 30.56%
+Tr-me_0051_r.jpg và Tr-me_0051_m.jpg giống nhau: 39.69%
+Tr-me_0052_r.jpg và Tr-me_0052_m.jpg giống nhau: 31.17%
+Tr-me_0053_r.jpg và Tr-me_0053_m.jpg giống nhau: 42.12%
+Tr-me_0054_r.jpg và Tr-me_0054_m.jpg giống nhau: 54.59%
+Tr-me_0055_r.jpg và Tr-me_0055_m.jpg giống nhau: 67.07%
+Tr-me_0056_r.jpg và Tr-me_0056_m.jpg giống nhau: 54.66%
+Tr-me_0057_r.jpg và Tr-me_0057_m.jpg giống nhau: 46.70%
+Tr-me_0058_r.jpg và Tr-me_0058_m.jpg giống nhau: 47.35%
+Tr-me_0059_r.jpg và Tr-me_0059_m.jpg giống nhau: 55.67%
+Tr-me_0060_r.jpg và Tr-me_0060_m.jpg giống nhau: 36.09%
+
+Độ giống nhau cao nhất: 67.07%
+Độ giống nhau trung bình: 40.39%
