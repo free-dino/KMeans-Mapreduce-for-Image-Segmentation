@@ -8,7 +8,7 @@ rm -r -f ./output/*
 # create some temp file
 mkdir ./tmp
 
-python3 data_prep.py --src_img ./input/image.jpg --dst_folder ./tmp --k_init_centroids 3
+python3 data_prep.py --src_img ./input/ --dst_folder ./tmp --k_init_centroids 3
 
 # remove old file from hdfs if any
 hdfs dfs -rm -r -f /KMeans/Input
