@@ -67,11 +67,12 @@ Bây giờ, vì lý do tối ưu hóa, các giá trị đầu ra được tự �
 
 Sau khi hoàn thành xong 1 vòng lặp, các centroids mới sẽ được lưu và chương trình sẽ kiểm tra hai điều kiện, nếu chương trình đạt đến số lượng tối đa vòng lặp hoặc nếu giá trị của **Counter** không thay đổi. Nếu một trong hai điều kiện thỏa mãn, thì chương trình kết thúc, ngược lại, chương trinh chạy lại MapReduce với các centroids mới đã cập nhật.
 
-## Examples
-One of the use-cases of k-means algorithm is the color quantization process, reducing the number of distinct colors of an image. (Far better algorithms for this purpose are available)
+## Ứng dụng vào phân cụm hình ảnh theo màu
+Một ứng dụng quan trọng của KMeans là lượng tử hóa hình ảnh theo màu.
 
-Numerical (RGB) values of images (Fig. 1) are saved as input data (Fig. 2), and clusters are randomly initialized. 
-
+Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+![alt text](https://github.com/free-dino/KMeans-Mapreduce-for-Image-Segmentation/blob/main/figures/11.png)  |  ![alt text](https://github.com/free-dino/KMeans-Mapreduce-for-Image-Segmentation/blob/main/figures/11_colormap.png)
 
 
 [flow]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/alg.png "One MapReduce iteration"
