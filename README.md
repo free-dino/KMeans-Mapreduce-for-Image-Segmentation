@@ -82,7 +82,22 @@ Sau khi phân cụm ảnh, chúng ta sẽ tiến hành nhị phân hóa ảnh, v
 ![alt text][segment]  |  ![alt text][binary]
 
 
+Sau đó, tiến hành xử lý ảnh, bằng cách erode và dilate hình ảnh để được kết quả mong muốn:
+
+Ảnh sau khi nhị phân hóa            |  Ảnh sau khi xử lý
+:-------------------------:|:-------------------------:
+![alt text][binary]  |  ![alt text][morf]
+
+
+Chúng ta có thể so sánh ảnh kết quả và ảnh thu được:
+
+Ảnh sau thu được           |  Kết quả thật 
+:-------------------------:|:-------------------------:
+![alt text][morf]  |  ![alt text][real]
+
 [flow]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/alg.png "One MapReduce iteration"
 [11]: https://github.com/free-dino/KMeans-Mapreduce-for-Image-Segmentation/blob/main/figures/11.png
 [segment]: https://github.com/free-dino/KMeans-Mapreduce-for-Image-Segmentation/blob/main/figures/11_colormap.png
 [binary]: https://github.com/free-dino/KMeans-Mapreduce-for-Image-Segmentation/blob/main/figures/gambar_biner_100.png
+[morf]: https://github.com/free-dino/KMeans-Mapreduce-for-Image-Segmentation/blob/main/figures/morf_11.png
+[real]: https://github.com/meilylaap/Brain-tumor-segmentation-with-Kmeans-plusplus-clustering/blob/main/masking_images/11.png
