@@ -1,3 +1,5 @@
+Project này được lấy cảm hứng từ hai project tương tự về [KMeans MapReduce](https://github.com/markomih/kmeans_mapreduce) và [Sử dụng KMeans cùng xử lý ảnh để phân cụm u não](https://github.com/meilylaap/Brain-tumor-segmentation-with-Kmeans-plusplus-clustering)
+
 # Cài đặt K-means MapReduce
 Chúng tôi cài đặt thuật toán phân cụm k-means sử dụng MapReduce framework (Hadoop bản 3.4.0).
 ### Khởi động hadoop
