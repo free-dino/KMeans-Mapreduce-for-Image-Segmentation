@@ -1,24 +1,24 @@
-# K-means MapReduce implementation
-In this work k-means clustering algorithm is implemented using MapReduce (Hadoop version 3.4.0) framework.
-### Start hadoop
+# Cài đặt K-means MapReduce
+Chúng tôi cài đặt thuật toán phân cụm k-means sử dụng MapReduce framework (Hadoop bản 3.4.0).
+### Khởi động hadoop
 Format namenode:
 ```bash
 hdfs namenode -format
 ```
 
-Start dfs and yarn
+Khởi đôngh dfs và yarn
 ```bash
 start-dfs.sh
 start-yarn.sh
 ```
-or 
+hoặc ngắn gọn hơn
 ```bash
 start-all.sh
 ```
 
-You should use a virtual environment to run this program.
+Nên sử dụng môi trường ảo để chạy chương trình này.
 
-You can use either ```virtualenv``` or ```conda```.
+Bạn có thể sử dụng môi trường ```virtualenv``` hoặc ```conda```.
 
 #### virtualenv
 ```bash
@@ -34,30 +34,38 @@ pip install -r requirements.txt
 ```
 
 
-Shell script ```run.sh``` should be executed now. 
+Chạy Shell script ```run.sh```. 
 
 ```
 sh run.sh
 ```
 
-It requires path to jar file and its input parameters which are:
+Chương trình cần đường dẫn đến file jar và các tham số của nó:
 
-* ```input``` - path to data file
-* ```state``` - path to file that contains clusters 
-* ```number``` - number of reducers 
-* ```output``` - output directory 
-* ```delta``` - threshold convergence (acceptable difference between 2 subsequent centroids)
-* ```max``` - maximum number of iterations 
-* ```distance``` - similairty measure (currently only Euclidean distance is supported)
+* ```input``` - đường dẫn đến file data
+* ```state``` - đường dẫn đến file chứa các centroids được khởi tạo 
+* ```number``` - Số lượng reducer
+* ```output``` - đường dẫn đến output 
+* ```delta``` - ngưỡng hội tụ
+* ```max``` - số lần lặp tối đa 
+* ```distance``` - phương pháp tính khoảng cách (hiện tại chỉ dùng khoảng cách Euclide vì khối u thường có hình cầu)
 
 ## Workflow
-The figure below denotes one iteration of MapReduce program.
+Mô hình dưới đây mô tả một lần lặp của MapReduce.
 
 ![alt text][flow]
 
-First, Centroids and Context (Configuration) are loaded into the Distributed Cache. This is done by overriding setup function in the Mapper and Reducer class. Afterwards, the input data file is split and each data point is processed by one of the map functions (in Map process). The function writes key-value pairs <Centroid, Point>, where the Centroid is the closest one to the Point. Next, Combiner is used in order to decrease the number of local writings. In this phase data points that are on the same machine are summed up and the number of those data points is recorded, Point.number variable. Now, for the optimization reasons output values are automatically shuffled and sorted by Centroids. The Reducer performs the same procedure as the Combiner, but it also checks whether centroids converged; comparing the difference between old and new centroids with delta input parameter. If a centroid converge, then the global Counter remains unchanged, otherwise, it is incremented. 
+Đầu tiên, các **Centroids** được khởi tạo và danh sách các điểm (points.txt) được nạp vào **Distributed Cache**. Điều này được thực hiện bằng cách ghi đè (override) hàm ```setup``` trong lớp **Mapper** và lớp **Reducer**. 
 
-After the one iteration is done, new centroids are saved and the program checks two conditions, if the program reached the maximum number of iterations or if the Counter value is unchanged. If one of these two conditions is satisfied, then the program is finished, otherwise, the whole MapReduce process is run again with the updated centroids.
+Sau đó, file dữ liệu đầu vào được chia nhỏ và mỗi điểm dữ liệu được xử lý bởi một hàm ```map``` (trong quá trình **Map**). Hàm này ghi các cặp khóa-giá trị ```<Centroid, Point>```, trong đó **Centroid** tâm gần nhất so với **Point**. 
+
+Tiếp theo, **Combiner** được sử dụng để làm giảm số lượng các lần ghi cục bộ. Trong quá trình này, các điểm dữ liệu nằm trên cùng một máy được cộng dồn và số lượng các điểm dữ liệu đó được lưu trong biến ```Point.number```. 
+
+Bây giờ, vì lý do tối ưu hóa, các giá trị đầu ra được tự động trộn và sắp xếp theo các **Centroids**. 
+
+**Reducer** thực hiện quy trình tương tự như **Combiner**, nhưng đồng thời cũng kiểm tra xem các centroids đã hội tụ hay chưa; bằng cách so sánh sự khác biệt giữa các centroids cũ và centroids mới với tham số đầu vào ```delta```. Nếu một centroid hội tụ, thì **Counter toàn cục** không thay đổi, ngược lại, nó sẽ tăng lên. 
+
+Sau khi hoàn thành xong 1 vòng lặp, các centroids mới sẽ được lưu và chương trình sẽ kiểm tra hai điều kiện, nếu chương trình đạt đến số lượng tối đa vòng lặp hoặc nếu giá trị của **Counter** không thay đổi. Nếu một trong hai điều kiện thỏa mãn, thì chương trình kết thúc, ngược lại, chương trinh chạy lại MapReduce với các centroids mới đã cập nhật.
 
 ## Examples
 One of the use-cases of k-means algorithm is the color quantization process, reducing the number of distinct colors of an image. (Far better algorithms for this purpose are available)
