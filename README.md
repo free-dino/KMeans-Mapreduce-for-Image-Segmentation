@@ -70,9 +70,11 @@ Sau khi hoàn thành xong 1 vòng lặp, các centroids mới sẽ được lưu
 ## Ứng dụng vào phân cụm hình ảnh theo màu
 Một ứng dụng quan trọng của KMeans là lượng tử hóa hình ảnh theo màu.
 
-Solarized dark             |  Solarized Ocean
+Ảnh gốc             |  Ảnh sau khi được phân cụm
 :-------------------------:|:-------------------------:
-![alt text](https://github.com/free-dino/KMeans-Mapreduce-for-Image-Segmentation/blob/main/figures/11.png)  |  ![alt text](https://github.com/free-dino/KMeans-Mapreduce-for-Image-Segmentation/blob/main/figures/11_colormap.png)
+![alt text][11]  |  ![alt text][segment]
 
 
 [flow]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/alg.png "One MapReduce iteration"
+[11]: https://github.com/free-dino/KMeans-Mapreduce-for-Image-Segmentation/blob/main/figures/11.png
+[segment]: https://github.com/free-dino/KMeans-Mapreduce-for-Image-Segmentation/blob/main/figures/11_colormap.png
