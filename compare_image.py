@@ -61,7 +61,7 @@ def process_folders(result_folder, mask_folder, output_file="./comparison_result
             similarities.append(similarity)
         
             file.write(f"{result_file} và {mask_file} giống nhau: {similarity:.2f}%\n")
-            print(f"{result_file} và {mask_file} giống nhau {similarity:.2f}%\n")
+            print(f"{result_file} và {mask_file} giống nhau {similarity:.2f}%")
 
         # Tính mức độ giống nhau cao nhất và trung bình
         if similarities:
