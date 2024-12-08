@@ -95,6 +95,14 @@ Chúng ta có thể so sánh ảnh kết quả và ảnh thu được:
 :-------------------------:|:-------------------------:
 ![alt text][morf]  |  ![alt text][real]
 
+Sử dụng hệ số Dice để tính toán độ trùng khớp của hai ảnh:
+
+$$
+\text{Dice} = \frac {2 |A \cap B|}{|A| + |B|}
+$$
+
+Ta có thể thu được độ giống nhau của hai bức ảnh này đạt: 89.12%
+
 [flow]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/alg.png "One MapReduce iteration"
 [11]: https://github.com/free-dino/KMeans-Mapreduce-for-Image-Segmentation/blob/main/figures/11.png
 [segment]: https://github.com/free-dino/KMeans-Mapreduce-for-Image-Segmentation/blob/main/figures/11_colormap.png
