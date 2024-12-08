@@ -1,43 +1,57 @@
 import cv2
 import numpy as np
-from skimage.metrics import structural_similarity as ssim
 import os
+
+def dice_coefficient(img1, img2):
+    """
+    Computes the Dice coefficient between two binary images.
+    Dice = 2 * (|A ∩ 😎) / (|A| + |B|)
+    """
+    intersection = np.sum((img1 > 0) & (img2 > 0))  # Count overlapping foreground pixels
+    total_pixels = np.sum((img1 > 0)) + np.sum((img2 > 0))  # Count total pixels in both masks
+    
+    if total_pixels == 0:
+        return 1.0  # If both images are empty, the similarity is perfect (1.0)
+    
+    dice = 2 * intersection / total_pixels
+    return dice
+
+
+def iou_score(img1, img2):
+    """
+    Computes the Intersection over Union (IoU) between two binary images.
+    IoU = |A ∩ 😎 / |A ∪ 😎
+    """
+    intersection = np.sum((img1 > 0) & (img2 > 0))  # Count overlapping foreground pixels
+    union = np.sum((img1 > 0) | (img2 > 0))  # Count the union of foreground pixels in both masks
+    
+    if union == 0:
+        return 1.0  # If both images are empty, the similarity is perfect (1.0)
+    
+    iou = intersection / union
+    return iou
+
 
 def compare_images(img1, img2):
     """
-    So sánh hai ảnh, tập trung vào các vùng sáng (pixel khác 0).
+    Compares two images using Dice coefficient and IoU.
+    Returns a combined similarity percentage based on IoU and Dice.
     """
-    # Tạo mặt nạ để chỉ giữ pixel khác 0
-    mask1 = img1 > 0
-    mask2 = img2 > 0
-    combined_mask = mask1 | mask2  # Giữ lại vùng có pixel khác 0 của cả hai ảnh
+    dice = dice_coefficient(img1, img2)
+    iou = iou_score(img1, img2)
+    
+    # You can combine them if you want, or just return them separately
+    similarity_percentage = (0.5 * dice + 0.5 * iou) * 100  # Weighted combination (optional)
+    
+    return similarity_percentage, dice * 100, iou * 100  # Return separate metrics as well
 
-    # Áp dụng mặt nạ lên ảnh
-    img1_focus = img1[combined_mask]
-    img2_focus = img2[combined_mask]
 
-    # Tính MSE (chỉ trên vùng sáng)
-    mse = np.mean((img1_focus - img2_focus) ** 2)
-    max_mse = 255 ** 2  # MSE tối đa cho ảnh grayscale
-    normalized_mse = 1 - (mse / max_mse)
-
-    # Tính SSIM (chỉ trên vùng sáng)
-    ssim_index = ssim(img1_focus, img2_focus)
-
-    # Kết hợp MSE và SSIM
-    weight_ssim = 0.7 
-    weight_mse = 0.3
-    similarity_percentage = (weight_ssim * ssim_index) + (weight_mse * normalized_mse)
-    similarity_percentage *= 100
-
-    return similarity_percentage
-
-def process_folders(result_folder, mask_folder, output_file = "./comparison_results.txt"):
+def process_folders(result_folder, mask_folder, output_file="./comparison_results.txt"):
     """
-    Duyệt qua hai thư mục và so sánh từng cặp ảnh tương ứng.
+    Processes two folders, comparing image pairs from the result folder with mask images.
     """
-    result_files = sorted([f for f in os.listdir(result_folder) if f.endswith('.jpg')])
-    mask_files = sorted([f for f in os.listdir(mask_folder) if f.endswith('.jpg')])
+    result_files = sorted([f for f in os.listdir(result_folder) if f.endswith('.png')])
+    mask_files = sorted([f for f in os.listdir(mask_folder) if f.endswith('.png')])
 
     if len(result_files) != len(mask_files):
         print("Số lượng ảnh trong hai thư mục không khớp!")
@@ -46,7 +60,7 @@ def process_folders(result_folder, mask_folder, output_file = "./comparison_resu
     similarities = []
 
     with open(output_file, "w") as file:
-        file.write("KET QUA SO SANH:\n\n")
+        file.write("KẾT QUẢ SO SÁNH:\n\n")
         
         for result_file, mask_file in zip(result_files, mask_files):
             result_path = os.path.join(result_folder, result_file)
@@ -60,14 +74,14 @@ def process_folders(result_folder, mask_folder, output_file = "./comparison_resu
                 print(f"Kích thước không khớp: {result_file} và {mask_file}")
                 continue
 
-            # Tính toán mức độ giống nhau
-            similarity = compare_images(img1, img2)
+            # So sánh hai ảnh
+            similarity, dice, iou = compare_images(img1, img2)
             similarities.append(similarity)
         
-            file.write(f"{result_file} và {mask_file} giống nhau: {similarity:.2f}%\n")
-            print(f"{result_file} và {mask_file} giống nhau {similarity:.2f}%")
+            file.write(f"{result_file} và {mask_file} giống nhau: {similarity:.2f}% (Dice: {dice:.2f}%, IoU: {iou:.2f}%)\n")
+            print(f"{result_file} và {mask_file} giống nhau {similarity:.2f}% (Dice: {dice:.2f}%, IoU: {iou:.2f}%)")
 
-        # Tính max, trung bình
+        # Tính mức độ giống nhau cao nhất và trung bình
         if similarities:
             max_similarity = np.max(similarities)
             avg_similarity = np.mean(similarities)
@@ -81,7 +95,6 @@ def process_folders(result_folder, mask_folder, output_file = "./comparison_resu
         else:
             file.write("\nKhông có kết quả nào để tính trung bình.\n")
             print("\nKhông có kết quả nào để tính trung bình.")
-
 
 
 if __name__ == "__main__":

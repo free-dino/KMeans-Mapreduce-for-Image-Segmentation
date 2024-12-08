@@ -76,7 +76,6 @@ def kmeans(data, initial_centroids, max_iter=30):
 
         # Check for convergence
         if np.allclose(new_centers, centers):
-            print(f"Converged at iteration {iteration}")
             break
 
         centers = new_centers

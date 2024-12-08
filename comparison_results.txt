@@ -1,55 +1,35 @@
-KET QUA SO SANH:
+KẾT QUẢ SO SÁNH:
 
-Tr-me_0010_r.jpg và Tr-me_0010_m.jpg giống nhau: 38.24%
-Tr-me_0011_r.jpg và Tr-me_0011_m.jpg giống nhau: 41.86%
-Tr-me_0012_r.jpg và Tr-me_0012_m.jpg giống nhau: 32.81%
-Tr-me_0013_r.jpg và Tr-me_0013_m.jpg giống nhau: 32.07%
-Tr-me_0014_r.jpg và Tr-me_0014_m.jpg giống nhau: 48.78%
-Tr-me_0015_r.jpg và Tr-me_0015_m.jpg giống nhau: 36.66%
-Tr-me_0016_r.jpg và Tr-me_0016_m.jpg giống nhau: 43.18%
-Tr-me_0017_r.jpg và Tr-me_0017_m.jpg giống nhau: 32.45%
-Tr-me_0018_r.jpg và Tr-me_0018_m.jpg giống nhau: 49.54%
-Tr-me_0019_r.jpg và Tr-me_0019_m.jpg giống nhau: 56.95%
-Tr-me_0020_r.jpg và Tr-me_0020_m.jpg giống nhau: 42.67%
-Tr-me_0021_r.jpg và Tr-me_0021_m.jpg giống nhau: 47.64%
-Tr-me_0022_r.jpg và Tr-me_0022_m.jpg giống nhau: 40.32%
-Tr-me_0023_r.jpg và Tr-me_0023_m.jpg giống nhau: 52.60%
-Tr-me_0024_r.jpg và Tr-me_0024_m.jpg giống nhau: 29.87%
-Tr-me_0025_r.jpg và Tr-me_0025_m.jpg giống nhau: 33.90%
-Tr-me_0026_r.jpg và Tr-me_0026_m.jpg giống nhau: 40.67%
-Tr-me_0027_r.jpg và Tr-me_0027_m.jpg giống nhau: 29.84%
-Tr-me_0028_r.jpg và Tr-me_0028_m.jpg giống nhau: 30.32%
-Tr-me_0030_r.jpg và Tr-me_0030_m.jpg giống nhau: 45.24%
-Tr-me_0031_r.jpg và Tr-me_0031_m.jpg giống nhau: 61.65%
-Tr-me_0032_r.jpg và Tr-me_0032_m.jpg giống nhau: 50.50%
-Tr-me_0033_r.jpg và Tr-me_0033_m.jpg giống nhau: 30.60%
-Tr-me_0034_r.jpg và Tr-me_0034_m.jpg giống nhau: 40.55%
-Tr-me_0035_r.jpg và Tr-me_0035_m.jpg giống nhau: 31.02%
-Tr-me_0036_r.jpg và Tr-me_0036_m.jpg giống nhau: 34.76%
-Tr-me_0037_r.jpg và Tr-me_0037_m.jpg giống nhau: 40.48%
-Tr-me_0038_r.jpg và Tr-me_0038_m.jpg giống nhau: 37.47%
-Tr-me_0039_r.jpg và Tr-me_0039_m.jpg giống nhau: 34.79%
-Tr-me_0040_r.jpg và Tr-me_0040_m.jpg giống nhau: 31.65%
-Tr-me_0041_r.jpg và Tr-me_0041_m.jpg giống nhau: 30.61%
-Tr-me_0042_r.jpg và Tr-me_0042_m.jpg giống nhau: 30.24%
-Tr-me_0043_r.jpg và Tr-me_0043_m.jpg giống nhau: 40.17%
-Tr-me_0044_r.jpg và Tr-me_0044_m.jpg giống nhau: 30.44%
-Tr-me_0045_r.jpg và Tr-me_0045_m.jpg giống nhau: 30.42%
-Tr-me_0046_r.jpg và Tr-me_0046_m.jpg giống nhau: 31.19%
-Tr-me_0047_r.jpg và Tr-me_0047_m.jpg giống nhau: 44.86%
-Tr-me_0048_r.jpg và Tr-me_0048_m.jpg giống nhau: 46.50%
-Tr-me_0049_r.jpg và Tr-me_0049_m.jpg giống nhau: 30.28%
-Tr-me_0050_r.jpg và Tr-me_0050_m.jpg giống nhau: 30.56%
-Tr-me_0051_r.jpg và Tr-me_0051_m.jpg giống nhau: 39.69%
-Tr-me_0052_r.jpg và Tr-me_0052_m.jpg giống nhau: 31.17%
-Tr-me_0053_r.jpg và Tr-me_0053_m.jpg giống nhau: 42.12%
-Tr-me_0054_r.jpg và Tr-me_0054_m.jpg giống nhau: 54.59%
-Tr-me_0055_r.jpg và Tr-me_0055_m.jpg giống nhau: 67.07%
-Tr-me_0056_r.jpg và Tr-me_0056_m.jpg giống nhau: 54.66%
-Tr-me_0057_r.jpg và Tr-me_0057_m.jpg giống nhau: 46.70%
-Tr-me_0058_r.jpg và Tr-me_0058_m.jpg giống nhau: 47.35%
-Tr-me_0059_r.jpg và Tr-me_0059_m.jpg giống nhau: 55.67%
-Tr-me_0060_r.jpg và Tr-me_0060_m.jpg giống nhau: 36.09%
+1.png và 1.png giống nhau: 27.32% (Dice: 34.09%, IoU: 20.54%)
+10.png và 10.png giống nhau: 72.95% (Dice: 79.68%, IoU: 66.23%)
+11.png và 11.png giống nhau: 84.74% (Dice: 89.12%, IoU: 80.37%)
+12.png và 12.png giống nhau: 82.52% (Dice: 87.41%, IoU: 77.63%)
+13.png và 13.png giống nhau: 74.54% (Dice: 81.00%, IoU: 68.07%)
+14.png và 14.png giống nhau: 52.27% (Dice: 60.83%, IoU: 43.71%)
+15.png và 15.png giống nhau: 29.75% (Dice: 36.89%, IoU: 22.62%)
+16.png và 16.png giống nhau: 39.43% (Dice: 47.62%, IoU: 31.25%)
+17.png và 17.png giống nhau: 56.83% (Dice: 65.24%, IoU: 48.41%)
+18.png và 18.png giống nhau: 67.81% (Dice: 75.27%, IoU: 60.35%)
+19.png và 19.png giống nhau: 0.00% (Dice: 0.00%, IoU: 0.00%)
+2.png và 2.png giống nhau: 24.08% (Dice: 30.30%, IoU: 17.86%)
+20.png và 20.png giống nhau: 38.41% (Dice: 46.51%, IoU: 30.30%)
+21.png và 21.png giống nhau: 48.30% (Dice: 56.86%, IoU: 39.73%)
+22.png và 22.png giống nhau: 52.80% (Dice: 61.35%, IoU: 44.25%)
+23.png và 23.png giống nhau: 51.14% (Dice: 59.71%, IoU: 42.56%)
+24.png và 24.png giống nhau: 29.75% (Dice: 36.89%, IoU: 22.62%)
+25.png và 25.png giống nhau: 53.80% (Dice: 62.33%, IoU: 45.27%)
+26.png và 26.png giống nhau: 0.00% (Dice: 0.00%, IoU: 0.00%)
+27.png và 27.png giống nhau: 0.00% (Dice: 0.00%, IoU: 0.00%)
+28.png và 28.png giống nhau: 40.68% (Dice: 48.95%, IoU: 32.41%)
+29.png và 29.png giống nhau: 58.77% (Dice: 67.07%, IoU: 50.46%)
+3.png và 3.png giống nhau: 5.41% (Dice: 7.12%, IoU: 3.69%)
+30.png và 30.png giống nhau: 68.13% (Dice: 75.55%, IoU: 60.71%)
+4.png và 4.png giống nhau: 0.00% (Dice: 0.00%, IoU: 0.00%)
+5.png và 5.png giống nhau: 15.75% (Dice: 20.24%, IoU: 11.26%)
+6.png và 6.png giống nhau: 19.11% (Dice: 24.35%, IoU: 13.86%)
+7.png và 7.png giống nhau: 34.34% (Dice: 42.05%, IoU: 26.63%)
+8.png và 8.png giống nhau: 45.10% (Dice: 53.60%, IoU: 36.61%)
+9.png và 9.png giống nhau: 0.00% (Dice: 0.00%, IoU: 0.00%)
 
-Độ giống nhau cao nhất: 67.07%
-Độ giống nhau trung bình: 40.39%
+Độ giống nhau cao nhất: 84.74%
+Độ giống nhau trung bình: 39.12%
