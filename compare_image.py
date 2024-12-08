@@ -50,8 +50,8 @@ def process_folders(result_folder, mask_folder, output_file="./comparison_result
     """
     Processes two folders, comparing image pairs from the result folder with mask images.
     """
-    result_files = sorted([f for f in os.listdir(result_folder) if f.endswith('.png')])
-    mask_files = sorted([f for f in os.listdir(mask_folder) if f.endswith('.png')])
+    result_files = sorted([f for f in os.listdir(result_folder)])
+    mask_files = sorted([f for f in os.listdir(mask_folder)])
 
     if len(result_files) != len(mask_files):
         print("Số lượng ảnh trong hai thư mục không khớp!")
