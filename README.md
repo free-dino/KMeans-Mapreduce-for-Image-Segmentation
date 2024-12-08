@@ -75,6 +75,14 @@ Một ứng dụng quan trọng của KMeans là lượng tử hóa hình ảnh 
 ![alt text][11]  |  ![alt text][segment]
 
 
+Sau khi phân cụm ảnh, chúng ta sẽ tiến hành nhị phân hóa ảnh, với threshold là 100:
+
+Ảnh sau khi được phân cụm             |  Ảnh sau khi nhị phân hóa
+:-------------------------:|:-------------------------:
+![alt text][segment]  |  ![alt text][binary]
+
+
 [flow]: https://github.com/Maki94/kmeans_mapreduce/blob/master/figures/alg.png "One MapReduce iteration"
 [11]: https://github.com/free-dino/KMeans-Mapreduce-for-Image-Segmentation/blob/main/figures/11.png
 [segment]: https://github.com/free-dino/KMeans-Mapreduce-for-Image-Segmentation/blob/main/figures/11_colormap.png
+[binary]: https://github.com/free-dino/KMeans-Mapreduce-for-Image-Segmentation/blob/main/figures/gambar_biner_100.png
