@@ -12,6 +12,8 @@ parser = argparse.ArgumentParser(
 parser.add_argument('--src_img', type=str, help='Path to the source image.')
 parser.add_argument('--dst_folder', type=str,
                     help='Directory in which points.txt and clusters.txt will be saved.')
+parser.add_argument('--k_init_centroids', type=int,
+                    help='Number of initial centroids to seed using KMeans++.', default=5)
 
 args = parser.parse_args()
 
@@ -82,8 +84,7 @@ def kmeans(data, initial_centroids, max_iter=30):
 
 
 
-def main(src_img, dst_folder):
-    k=3
+def main(src_img, dst_folder, k):
     # files to be created
     points_path = join(dst_folder, 'points.txt')
     clusters_path = join(dst_folder, 'clusters.txt')
@@ -128,4 +129,4 @@ def main(src_img, dst_folder):
 
 if __name__ == '__main__':
     args = parser.parse_args()
-    main(args.src_img, args.dst_folder)
+    main(args.src_img, args.dst_folder, args.k_init_centroids)
