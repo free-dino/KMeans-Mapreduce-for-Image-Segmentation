@@ -60,9 +60,9 @@ First, Centroids and Context (Configuration) are loaded into the Distributed Cac
 After the one iteration is done, new centroids are saved and the program checks two conditions, if the program reached the maximum number of iterations or if the Counter value is unchanged. If one of these two conditions is satisfied, then the program is finished, otherwise, the whole MapReduce process is run again with the updated centroids.
 
 ## Examples
-One of the use-cases of k-means algorithm is the color quantization process, reducing the number of distinct colors of an image. (Far better algorithms for this purpose are available)
+One of the use-cases of k-means algorithm is the segmentation of MRI images, reducing the number of distinct colors of an image to make it easier to process. (Far better algorithms for this purpose are available)
 
-Numerical (RGB) values of images (Fig. 1) are saved as input data (Fig. 2), and clusters are randomly initialized. 
+Numerical (RGB) values of images are saved as input data, and clusters are initialized by a KMeans++ algorithm. 
 
 
 
